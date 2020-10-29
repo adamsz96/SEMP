@@ -1,0 +1,99 @@
+<div *ngIf="product || editMode">
+  <button *ngIf="!isNew" id="copy_button" class="btn" (click)="copy()">Copy as new product</button>
+  <button *ngIf="!editMode && !isNew" id="edit_button" class="btn" (click)="editMode=true">Edit</button>
+  <button *ngIf="editMode || isNew" id="save_button" class="btn" (click)="save()">Save</button>
+
+  <section class="section-name">
+    <h2 *ngIf="!editMode" id="product_name">{{product.name}}</h2>
+    <h2 *ngIf="editMode" ><input type="text" [(ngModel)]="product.name" placeholder="Name" maxlength="75" required/></h2>
+  </section>
+  <div class="parted">
+  <div class="left">
+
+  <section class="section-description">
+    <h4>Description</h4>
+    <p *ngIf="!editMode">{{product.description}}</p>
+    <textarea *ngIf="editMode" [(ngModel)]="product.description" rows="10" cols="50"></textarea>
+  </section>
+
+  <section class="section-properties">
+    <h4>Properties</h4>
+    <table>
+      <thead>
+        <tr>
+          <td>Length</td>
+          <td>Width</td>
+          <td>Height</td>
+          <td>Color</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" [disabled]="!editMode" [(ngModel)]="product.hasLength"/></td>
+          <td><input type="checkbox" [disabled]="!editMode" [(ngModel)]="product.hasWidth"/></td>
+          <td><input type="checkbox" [disabled]="!editMode" [(ngModel)]="product.hasHeight"/></td>
+          <td><input type="checkbox" [disabled]="!editMode" [(ngModel)]="product.hasColor"/></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h4>Price</h4>
+    <p *ngIf="!editMode">{{product.pricePerUnit}} HUF / unit </p>
+    <div *ngIf="editMode"><input type="number" [(ngModel)]="product.pricePerUnit" min="1" max="320928000" step="0.01"/> HUF / unit </div>
+  </section>
+  </div>
+
+  <div class="right">
+    <h4>Pictures</h4>
+    <div *ngIf="!isNew" class="image_overview" [ngStyle]="{'overflow-x': product.images.length > 0 ? 'auto' : 'none'}">
+
+      <span class="image_preview" [ngStyle]="{'background-image': 'url('+this.globals.productImagesPath+image+')'}" *ngFor="let image of product.images">
+        <i *ngIf="editMode" class="fa fa-times" (click)="showImageDialog(image)"></i>
+      </span>
+
+      <p class="no_pictures_message" *ngIf="product.images.length == 0">No pictures for this product..</p>
+    </div>
+
+    <div>
+      <div *ngIf="editMode && !isNew">
+        <h4>Upload images:</h4>
+        <input id="file_upload" type="file" (change)="addImages($event)" accept="image/*" multiple/>
+      </div>
+      <div *ngIf="isNew">
+        <p>Please create the product before uploading images</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <section>
+    <app-product-task-view *ngIf="!isNew" [product]="product" [editMode]="editMode"> </app-product-task-view>
+    <div *ngIf="isNew">
+      <h4>Tasks</h4>
+      <p>Please create the product before adding the tasks</p>
+    </div>
+  </section>
+
+  <div id="image_delete_dialog" class="modal" tabindex="-1" >
+    <div class="modal-dialog" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Image deletion</h5>
+          <button type="button" class="close" (click)="closeDialog()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you really want to delete this picture?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn red" (click)="deleteImageDialog()">Yes</button>
+          <button type="button" class="btn green" (click)="closeDialog()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

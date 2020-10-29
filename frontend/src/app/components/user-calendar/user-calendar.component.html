@@ -1,0 +1,29 @@
+
+<div>
+  <div class="hours">
+    <div style="top: 25px;">08</div>
+    <div style="top: 105px;">09</div>
+    <div style="top: 185px;">10</div>
+    <div style="top: 265px;">11</div>
+    <div style="top: 345px;">12</div>
+    <div style="top: 425px;">13</div>
+    <div style="top: 505px;">14</div>
+    <div style="top: 585px;">15</div>
+    <div style="top: 665px;">16</div>
+  </div>
+  <div class="calendar">
+    <div class="calendar-day" *ngFor="let day of data">
+      <div class="calendar-block day-header">
+        <span>{{day.day | date:'dd.MM.yyyy EEE'}}</span>
+      </div>
+      <div class="calendar-block block-{{block%4}}" *ngFor="let block of blocks">
+      </div>
+      <div *ngFor="let entry of day.entries" class="calendar-entry" [style.top.px]="calculateTopPx(entry.begin)" [style.height.px]="calculateHeightPx(entry.duration)">
+        <span>{{entry.productName}} - </span>
+        <span>{{entry.taskName}}</span>
+      </div>
+    </div>
+  </div>
+
+
+</div>

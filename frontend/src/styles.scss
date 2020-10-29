@@ -1,0 +1,125 @@
+@import "colors.scss";
+@import '~ngx-toastr/toastr.css';
+
+/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: $background;
+  overflow: hidden;
+}
+
+#row-menu {
+  height: calc(100vh - 56px);
+  width: 100vw;
+  margin-left:0px;
+  margin-right:0px;
+}
+
+#container {
+  visibility: hidden;
+}
+
+.header-default{
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; 
+  font-size:20px; 
+  color: $dark_font_color;
+  padding-right: 40px;
+}
+
+.header-banner{
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; 
+  color: $light_font_color;
+  padding-right: 40px;
+}
+
+.main-container {
+  width:100vw;
+}
+
+.border-button{
+  font-size: 12px;
+  line-height: 42px;
+  display: block;
+  height: 42px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: $primary_color;
+  border: 1px solid $primary_color;
+  background: transparent;
+  width: 200px;
+  position: relative;
+}
+
+.border-button:hover {
+  background-color: $primary_color;
+  color: #ffffff;
+  transition: all 0.2s;
+}
+.border-button:focus {
+  outline: none;
+}
+
+.full-button{
+  font-size: 12px;
+  line-height: 42px;
+  display: block;
+  height: 42px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: white;
+  background: $primary_color;
+  width: 200px;
+  border: none;
+  position: relative;
+}
+
+.full-button:hover {
+  color: black;
+  transition: all 0.2s;
+}
+.full-button:focus {
+  outline: none;
+}
+
+.mat-elevation{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.mat-button-custom{
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  background-color: $primary_color;
+  color: #fff;
+}
+
+.page-header{
+
+  h1{
+    display: block;
+    text-align: left;
+    padding-bottom: 1em;
+  }
+
+  .page-control{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 1em;
+  }
+}
+
+.form-group{
+  border-radius: 0px !important;
+}
+
+
+.hide{
+  display: none;
+}
+
+.back-bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}

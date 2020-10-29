@@ -1,0 +1,43 @@
+<div *ngIf="order && employee && client && receipt">
+
+  <div class="order_detail">
+    <div class="heading">
+      <h1>Order #{{order.id}}
+        <button style="float:right" class="btn" (click)="print()">Print</button>
+      </h1>
+      <h5>
+        State: {{getState(order.completionStateId)}}
+        <button style="float:right" class="btn" (click)="completeOrder()" *ngIf="order.completionStateId == 2">Complete order</button>
+      </h5>
+    </div>
+    <div>
+      <p>Start Date: {{order.startDate | date: 'longDate'}} ||
+        Completion: {{order.plannedCompletionDate | date: 'longDate'}} || Paid: {{order.paid}}
+        <button style="float:right" class="btn" (click)="paymentReceived()" *ngIf="!order.paid">Payment received</button> </p>
+      <p *ngIf="scheduledDate" [class]="isLate?'late':''">Scheduled Date: {{scheduledDate | date: 'longDate'}}
+        <span *ngIf="isLate" class="warning">Warning! The order will be late!</span></p>
+
+      <button style="float:right" class="btn" (click)="scheduleOrder()">Schedule Order</button>
+      <app-order-schedule-table [scheduleData]="scheduleData" [scheduledDate]="scheduledDate" [plannedCompletionDate]="order.plannedCompletionDate"></app-order-schedule-table>
+
+      <p>Employee:
+        <button class="button" (click)="onEmployeeClick()">{{employee.name}}</button>
+      </p>
+
+      <p>Customer:
+        <button class="button" (click)="onCustomerClick(client)">{{client.name}}</button>
+      </p>
+
+      <h2>Ordered products</h2>
+        <app-order-cost-table [receipt]="receipt"></app-order-cost-table>
+
+      <p>Infos: {{order.infos}}</p>
+
+      <p *ngIf="order.claim">Claim ID
+        <button class="button" (click)="onClaimClick()">{{order.claim}}</button>
+      </p>
+    </div>
+  </div>
+
+  <app-order-print-view #printTable [client]="client" [order]="order" [receipt]="receipt"></app-order-print-view>
+</div>

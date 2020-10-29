@@ -1,0 +1,22 @@
+<div class="calendar-box closed" [class]="isToday(entry.day) ? 'today' : ''">
+    <span class="calendar-day-heading">
+      <span>{{entry.day | date:'yyyy-MM-dd EE'}} </span>
+      <span class="close" style="margin-right: 5px;" (click)="toggleAll($event)">
+        <i [ngClass]="{ 'fa': true, 'fa-angle-up': !this.hidden,'fa-angle-down': this.hidden  }"></i>
+      </span>
+    </span>
+
+
+    <div *ngFor="let entry of entry.employees | keyvalue" class="calendar-entry">
+
+      <app-dashboard-employee 
+      [employee]="entry.value" 
+      [addHidden]="this.hidden" 
+      [currentActiveTask]="currentActiveTask"
+      [selectMode]="selectMode"
+      (createPlannedTaskEvent)="createPlannedTask($event)"
+      (deletePlannedTaskEvent)="deletePlannedTask()"></app-dashboard-employee>
+
+    </div>
+
+  </div>

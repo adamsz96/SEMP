@@ -1,0 +1,33 @@
+$primary_color: #348db9;
+
+$navbar_background: #348db9;
+$navbar_brand_background: darken($navbar_background, 15%);
+
+$sidebar_background: whitesmoke;
+$sidebar_item_background: whitesmoke;
+$sidebar_item_background_hover: darken($sidebar_item_background,10%);
+$sidebar_color: #348db9;
+
+$background: lightgrey;
+$main_background: white;
+$light_font_color: white;
+$dark_font_color: #222;
+$calendar_entry_selected_color: darkred;
+
+$button_background: $navbar_brand_background;
+$button_background_hover: lighten($button_background, 10%);
+$button_color: $light_font_color;
+
+thead {
+  background: $navbar_background;
+  color: $light_font_color;
+}
+
+button, input[type="button"], .btn {
+  background: $button_background;
+  color: $button_color;
+}
+
+button:hover, input[type="button"]:hover, .btn:hover {
+  background: $button_background_hover;
+}

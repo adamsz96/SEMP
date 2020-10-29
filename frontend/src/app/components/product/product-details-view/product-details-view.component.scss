@@ -1,0 +1,133 @@
+@import "../../../../colors";
+
+$box_background: darken($main_background, 5);
+$box_inset_shadow: #777 0px 0px 2px inset;
+$outset_shadow: #ccc 0px 0px 4px;
+$image_size: 150px;
+$box_info_text_color: #aaa;
+$box_info_text_size: 2em;
+
+section {
+  margin: 0px 0px 30px 0px;
+}
+
+.image_overview {
+  display: flex;
+  justify-items: flex-start;
+  flex-flow: row;
+  flex-wrap: wrap;
+  background: $box_background;
+  width: $image_size*4+10px*6;
+  max-width: 100%;
+  box-shadow: $box_inset_shadow;
+  height: $image_size*2;
+  margin: 10px 0px;
+  overflow-y: scroll;
+}
+
+.image_preview {
+  display: inline-block;
+  height: $image_size;
+  min-width: $image_size;
+  margin: 10px 0px 10px 10px;
+  box-shadow: $outset_shadow;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.image_preview i {
+  display: inline-block;
+  float: right;
+  margin-top: 5px;
+  margin-right: 25px;
+  position: relative;
+  height: 0px;
+  width: 0px;
+  color: red;
+  text-shadow: black 1px 1px 1px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.no_pictures_message {
+  margin-left: 20px;
+  font-size: $box_info_text_size;
+  color: $box_info_text_color;
+}
+
+.image_upload {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  justify-content: center;
+  background: $box_background;
+  box-shadow: $box_inset_shadow;
+}
+
+.image_upload p {
+  color: $box_info_text_color;
+  font-size: $box_info_text_size - 1em;
+  margin-top: calc((100px - 2em)/2);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; ;
+}
+
+table td {
+  min-width: 80px;
+  text-align: center;
+}
+
+table thead td {
+  font-weight: bold;
+}
+
+#edit_button, #save_button, #copy_button {
+  float: right;
+  margin-left: 10px;
+}
+
+#file_upload {
+  margin-bottom: 10px;
+}
+
+.parted {
+  display: flex;
+  flex-flow: row;
+}
+
+.left, .right {
+  width: 50%;
+}
+
+.left {
+  justify-self: flex-start;
+}
+
+.right {
+  justify-self: flex-end;
+}
+
+#product_name {
+  max-width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section-name input {
+  width: 80%;
+}
+
+.modal {
+  background: rgba(0,0,0,0.5);
+}
+
+.green {
+  background: green;
+}
+
+.red {
+  background: red;
+}

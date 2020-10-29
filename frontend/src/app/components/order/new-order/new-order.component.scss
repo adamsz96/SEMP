@@ -1,0 +1,102 @@
+.header, .header-space, .footer, .footer-space { height: 100px; }
+.header { position: fixed; top: 0; }
+.footer { position: fixed; bottom: 0; }
+
+
+
+@import "../../../../colors";
+
+.back-buttom{
+  display: flex !important;
+  align-items: center !important;
+}
+
+.back-arrow{
+  margin-right: 10px;
+}
+
+.spacer{
+  margin: 15px;
+  height: 1px;
+  width: 120%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $primary_color;
+}
+
+.error-message-wrapper{
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  transform: translateX(-50%);
+  width: 30%;
+  background-color: #FFBABA;
+
+  .error-message-header{
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    position: relative;
+  }
+  .error-message-button{
+    position: absolute;
+    right: 4px;
+    top: 5px;
+    line-height: 0.5;
+    cursor: pointer;
+  }
+  .error-message{
+    padding: 1em;
+    text-align: center;
+  }
+}
+
+.product-wrapper{
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  //background-color: #eaeaea;
+  //border: 1px solid lightgray;
+  padding: 1em;
+  margin: 1em 0em;
+}
+
+.form-group{
+  margin: 1em 0em;
+}
+
+.new-product-wrapper{
+  display: flex;
+  .product-dropdown{
+    flex: 7;
+    margin-right: 1em;
+  }
+  .product-amount{
+    flex: 1;
+  }
+}
+
+.modal {
+  background: rgba(0,0,0,0.5);
+}
+
+.green {
+  background: green;
+}
+
+.red {
+  background: red;
+}
+
+#dueDateCalculateBtn {
+  margin-right: 1rem !important;
+}
+
+.btn {
+  margin: 0px 10px;
+}
+
+.right-btns {
+  display: flex;
+  justify-content: flex-end;
+}

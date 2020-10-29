@@ -1,0 +1,21 @@
+.section {
+  border: 1px solid lightskyblue;
+  padding: 30px;
+  margin-top: 10px;
+}
+
+.section button{
+  float: right;
+}
+
+.section input{
+  display: inline;
+  width: 150px;
+  float: right;
+  margin-right: 5px;
+}
+
+
+.hidden{
+  display: none;
+}

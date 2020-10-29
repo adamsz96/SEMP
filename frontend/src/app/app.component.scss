@@ -1,0 +1,19 @@
+@import "../colors.scss";
+
+.main-container {
+  width:100vw;
+}
+
+.sidebar{
+  //box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  height:calc(100vh - 50px);
+}
+
+.container{
+  height:calc(100vh - 50px - 2em);
+  min-height:calc(100vh - 50px) !important;
+  overflow: auto;
+  padding: 1em;
+  background: $main_background;
+}
+

@@ -1,0 +1,34 @@
+<div>
+<div [ngClass]="{'calendar-employee': true, 
+'calendar-employee-selected': checkDuration()}"
+(click)="selectEmployee($event)">
+    <div>
+      <span>{{employee.name}}</span>
+
+      <span class="close" (click)="toggle($event)">
+        <i [ngClass]="{'fa': true, 'fa-angle-down': addHidden, 'fa-angle-up': !addHidden }"></i>
+      </span>
+    </div>
+    <div class="clear-both">
+      <span class="float-left" style="width:50px">{{employee.longestBreak/4}}h</span>
+      <span class="float-left">{{employee.longestBreakStartDate | date:"HH:mm"}}</span>
+    </div>
+</div>
+
+  <div [ngClass]="{ 'hidden': addHidden }" >
+    <div *ngIf="employee.tasks.length > 1">
+      <div *ngFor="let task of employee.tasks | slice:1" class="calendar-task show-on-hover-parent">
+        <a class="task-name" href="/planned-task-details/{{task.plannedTaskId}}">{{task.taskName}} ({{task.plannedDuration/4}}h)</a>
+        <span (click)="deletePlannedTask(task.plannedTaskId)" class="btn show-on-hover">
+          <i class="fa fa-times remove"></i>
+        </span>
+
+      </div>
+    </div>
+    <div *ngIf="employee.tasks.length <= 1">
+      <div class="calendar-task show-on-hover-parent">
+        <span class="no-task">No planned tasks...</span>
+      </div>
+    </div>
+  </div>
+</div>

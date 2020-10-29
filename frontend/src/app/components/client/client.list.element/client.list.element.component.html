@@ -1,0 +1,28 @@
+<div class = "text-default list-item" style = "padding-top: 0px;">
+    <div class = "row" style = "width:1000px;padding-top: 10px;">
+      <div class = "col container" style = "width: 200px;max-width: 200px;margin-left: 0px;margin-right: 0px;">
+        <a >  {{client.name}} </a>
+      </div>
+
+      <div class = "col container" style = "width: 200px;max-width: 200px;margin-left: 0px;margin-right: 0px;">
+        <a >  {{client.address}} </a>
+      </div>
+      
+      <div class = "col container" style = "float:right;width: 200px; max-width: 200px;margin-left: 0px;margin-right: 0px;">
+          <button class = "button-link" (click) = "onInfoClick()">info</button>
+        </div>
+
+      <div class = "col container" style = "float:right;width: 200px; max-width: 200px;margin-left: 0px;margin-right: 0px;">
+          <button class = "button-link" (click) = "onOptionsClick()">options</button>
+        </div>
+
+        <div *ngIf = "open" class = "col container" style = "float:right;width: 100px;max-width: 100px;margin-left: 0px;margin-right: 0px;">
+            <button class = "button-link" (click) = "onEditClick()">edit</button>
+          </div>
+
+          <div *ngIf = "open" class = "col container" style = "float:right;width: 100px;max-width: 100px;margin-left: 0px;margin-right: 0px;">
+              <button class = "button-link" (click) = "onRemoveClick()">remove</button>
+            </div>
+    </div>
+    <hr style = "padding-top: 0px;margin-top: 10px;margin-bottom: 0px;">
+  </div>

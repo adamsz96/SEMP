@@ -1,0 +1,29 @@
+@import "../../../colors";
+
+#login_logout{
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  width: 100%;
+  margin-right: 20px;
+}
+
+#login_logout .nav-link {
+  color: $light_font_color;
+}
+
+#login_logout .nav-link:hover {
+  color: darken($light_font_color, 15);
+}
+
+#header-nav{
+  background-color: $navbar_background;
+  padding: 0px;
+  height: 50px;
+}
+
+#header-nav .navbar-brand {
+  padding: 10px 30px;
+  margin: 0px;
+  background-color: $navbar_brand_background;
+}

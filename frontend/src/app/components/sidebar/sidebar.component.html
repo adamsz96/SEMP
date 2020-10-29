@@ -1,0 +1,8 @@
+<div id="sidebar" *ngIf="authenticationService.isLoggedIn() && isAdmin() || isManager() ">
+  <div class="sidebar-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</div>
+  <div class="sidebar-item" routerLink="/order" routerLinkActive="active">Orders</div>
+  <div class="sidebar-item" routerLink="/product" routerLinkActive="active">Products</div>
+  <div class="sidebar-item" routerLink="/client" routerLinkActive="active">Clients</div>
+  <div *ngIf="isAdmin()" class="sidebar-item" routerLink="/employee" routerLinkActive="active">Employees</div>
+  <div class="sidebar-item" routerLink="/skills" routerLinkActive="active">Skills</div>
+</div>

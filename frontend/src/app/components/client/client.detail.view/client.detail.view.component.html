@@ -1,0 +1,65 @@
+
+<div class = "container">
+<form class ="form" [formGroup]="clientForm"  style = "background-color: #ffffff; padding:20px;">
+  <h1 *ngIf = "create" class = "header-default">Create Client</h1>
+  <h1 *ngIf = "!create" class = "header-default">Edit Client</h1>
+  <span layout="row"><hr flex/>
+    <div *ngIf="noChangesInfo" class = "alert alert-info">
+        <div>No changes were made</div>
+      </div>
+  <div class = "row">
+      
+    <div class = "form-group col">
+        <label class = "text-default" for = "name">Name</label>
+        <input style = "width:300px;" type = "text" formControlName="name" id = "name" class = "form-control"> 
+        <div *ngIf="!this.clientForm.controls.name.valid && (this.clientForm.controls.name.touched || this.createClicked)" class = "alert alert-danger" style = "width:300px;">
+          <div *ngIf="this.clientForm.controls.name.errors.required">Input Error: field required</div>
+          <div *ngIf="this.clientForm.controls.name.errors.maxlength">Input Error: max-length: 250</div>
+        </div>
+    </div>
+    <div class = "form-group col">
+        <label class = "text-default"for = "telephone">Telephone</label>
+        <input style = "width:300px;"type = "text" formControlName="telephone" id = "telephone" class = "form-control">
+        <div *ngIf="!this.clientForm.controls.telephone.valid && (this.clientForm.controls.telephone.touched || this.createClicked)" class = "alert alert-danger" style = "width:300px;">
+          <div *ngIf="this.clientForm.controls.telephone.errors.required">Input Error: field required</div>
+          <div *ngIf="this.clientForm.controls.telephone.errors.maxlength">Input Error: max-length: 250</div>
+        </div>
+    </div>
+    <div class = "form-group col">
+        <label class = "text-default"for = "email">Email*</label>
+        <input style = "width:300px;"type = "text"formControlName="email" id = "email" class = "form-control">
+        <div *ngIf="!this.clientForm.controls.email.valid && (this.clientForm.controls.email.touched || this.createClicked)" class = "alert alert-danger" style = "width:300px;">
+          <div *ngIf="this.clientForm.controls.email.errors.maxlength">Input Error: max-length: 500</div>
+        </div>
+    </div>
+  </div>
+  <div class = "form-group2">
+    <label class = "text-default"for = "address">Address</label>
+    <textarea type = "textarea" formControlName="address"id = "address" class = "form-control" style = "height:70px;width:667px;"></textarea>
+    <div *ngIf="!this.clientForm.controls.address.valid && (this.clientForm.controls.address.touched || this.createClicked)" class = "alert alert-danger" style = "width:300px;">
+      <div *ngIf="this.clientForm.controls.address.errors.required">Input Error: field required</div>
+      <div *ngIf="this.clientForm.controls.address.errors.maxlength">Input Error: max-length: 500</div>
+    </div>
+  </div>
+<hr flex/></span>
+<div class = "row">
+    <div class = "form-group col">
+        <label class = "text-default"for = "contact">Contact Persons*</label>
+        <input style = "width:300px;"formControlName="contact"type = "text" id = "contact" class = "form-control">
+        <div *ngIf="!this.clientForm.controls.contact.valid && (this.clientForm.controls.contact.touched || this.createClicked)" class = "alert alert-danger" style = "width:300px;">
+          <div *ngIf="this.clientForm.controls.contact.errors.maxlength">Input Error: max-length: 500</div>
+        </div>
+    </div>
+    <div class = "form-group col">
+        <label class = "text-default"for = "infos">Infos*</label>
+        <input style = "width:700px;"formControlName="infos"type = "text" id = "infos" class = "form-control">
+        <div *ngIf="!this.clientForm.controls.infos.valid && (this.clientForm.controls.infos.touched || this.createClicked)" class = "alert alert-danger" style = "width:300px;">
+          <div *ngIf="this.clientForm.controls.infos.errors.maxlength">Input Error: max-length: 500</div>
+        </div>
+    </div>
+  </div>
+    <button class = "btn btn-primary btn-text-default" (click) = "onCancelClick()">Cancel</button>
+    <button *ngIf = "create" class = "btn btn-primary btn-text-default" style = "margin-left: 20px;" (click) = "onCreateClick()">Create</button>
+    <button *ngIf = "!create" class = "btn btn-primary btn-text-default" style = "margin-left: 20px;" (click) = "onEditClick()">Submit</button>
+</form>
+</div>

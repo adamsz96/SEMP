@@ -1,0 +1,36 @@
+<div *ngIf="scheduleData">
+  <h2>Schedules</h2>
+  <table class="table table-striped table-responsive-md btn-table">
+    <thead>
+    <td>Product</td>
+    <td>Task</td>
+    <td>Employee</td>
+    <td>Scheduled at</td>
+    <td>Time</td>
+    </thead>
+    <tbody>
+    <tr *ngFor="let schedule of scheduleData | slice: 0: showAllSchedules?undefined:5">
+      <td><a href="/product/{{schedule.productId}}">{{schedule.productName}}</a></td>
+      <td>{{schedule.taskName}}</td>
+      <td><a *ngIf="schedule.employeeId != -1" href="/employee/{{schedule.employeeId}}">{{schedule.employeeName}}</a>
+        <span *ngIf="schedule.employeeId == -1">Not yet scheduled...</span>
+      </td>
+      <td><span *ngIf="schedule.employeeId != -1">{{schedule.startOfTask | date: "dd.MM.yyyy HH:mm"}}</span></td>
+      <td><span *ngIf="schedule.employeeId != -1">{{schedule.taskDuration}} h</span></td>
+    </tr>
+    <tr *ngIf="!showAllSchedules && scheduleData.length > 5">
+      <td><button class="btn" (click)="showAllSchedulesClick()">Show all</button></td>
+      <td>...</td>
+      <td>....</td>
+      <td>...</td>
+      <td>...</td>
+    </tr><tr *ngIf="showAllSchedules">
+      <td><button class="btn" (click)="hideSchedules()">Show less</button></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

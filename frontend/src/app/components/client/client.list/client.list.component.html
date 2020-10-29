@@ -1,0 +1,13 @@
+<div class = "container" id="client-list-d1" style="overflow: auto;">
+  <div class = "row" id="client-list-row">
+      <h1 class = "header-default" id="client-list-header">Client List</h1>
+      <button class = "btn btn-primary btn-text-default" (click) = "onAddClick()">Add New</button>
+  </div>
+  <hr id="client-list-hr">
+
+  <app-clientlistelement *ngFor="let c of clientList"
+  [(client)] = "c">
+
+  </app-clientlistelement>
+
+</div>

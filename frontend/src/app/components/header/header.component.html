@@ -1,0 +1,7 @@
+<nav id="header-nav" class="navbar navbar-expand-lg navbar-dark header-banner" >
+  <a class="navbar-brand" routerLink="/dashboard">Helios</a>
+
+  <div class="navbar-nav" id="login_logout" *ngIf="authenticationService.isLoggedIn()">
+      <a class="nav-link" *ngIf="authenticationService.isLoggedIn()" routerLink="/" (click)="authenticationService.logoutUser()">Logout</a>
+  </div>
+</nav>

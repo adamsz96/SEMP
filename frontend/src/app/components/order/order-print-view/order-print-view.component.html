@@ -1,0 +1,106 @@
+<div hidden id="print-section" *ngIf="client && order && receipt">
+  <h1>Vendrey & Partners Ltd.</h1>
+  <div class="parted" style="display: flex;">
+    <div class="adressFirm" style="width: 50%">
+      <p style="font-size: 20px;">
+        Lichter Adolf u. 19. <br>
+        Tel .: (36-1) 388-79-63 <br>
+        Tel./Fax: (36-1) 2504-359<br>
+        E-Mail: vendrey@t-online.hu <br>
+        Web: www.vendrey.hu<br>
+        Business hours: Monday to Friday : 7:00 – 16:00
+      </p>
+    </div>
+    <div class="addressClient" style="width: 50%">
+      <p style="text-align: right;font-size: 24px">
+        To: <br>
+        {{client.name}}<br>
+        {{client.address}}<br>
+      </p>
+    </div>
+  </div>
+
+  <div class="price" *ngIf="receipt">
+    <table align="center" style="font-size: 24px;text-align:left;width: 70%;">
+      <tr>
+        <th>Amount</th>
+        <th style="text-align: left">Product</th>
+        <th>Color</th>
+        <th>Length</th>
+        <th>Width</th>
+        <th>Height</th>
+        <th>Price/Unit</th>
+        <th>Total Price</th>
+      </tr>
+      <tr *ngFor="let item of this.receipt.items">
+        <td style="text-align: right">{{item.amount}}x</td>
+        <td style="text-align: left">{{item.product.name}}</td>
+        <td align="center" *ngIf="item.product.hasColor;else none">{{item.configuration.color}}</td>
+        <td align="center" *ngIf="item.product.hasWidth;else none">{{item.configuration.width}} m</td>
+        <td align="center" *ngIf="item.product.hasLength;else none">{{item.configuration.length}} m</td>
+        <td align="center" *ngIf="item.product.hasHeight;else none">{{item.configuration.height}} m</td>
+        <td align="center"> {{item.product.pricePerUnit}} {{globals.currency}}</td>
+        <td align="right">{{item.itemPrice}} {{globals.currency}}</td>
+      </tr>
+      <tr>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td style="text-align: right; border-top-style: double"><b>Gross price</b></td>
+        <td align="right" style="border-top-style: double">{{roundMoney(receipt.gross)}} {{globals.currency}}</td>
+      </tr>
+      <tr>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td style="text-align: right"><b>Vat ({{globals.vatPercent*100}}%)</b></td>
+        <td align="right">{{roundMoney(receipt.vat)}} {{globals.currency}}</td>
+      </tr>
+      <tr>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td style="text-align: right"><b>Net price</b></td>
+        <td align="right">{{roundMoney(receipt.net)}} {{globals.currency}}</td>
+      </tr>
+      <tr *ngIf="order.prepayment>0">
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td style="text-align: right"><b>Prepaid</b></td>
+        <td align="right">{{-order.prepayment}} {{globals.currency}}</td>
+      </tr>
+      <tr>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td class="hide"></td>
+        <td style="text-align: right; border-left: solid medium black; border-top: solid medium black; border-bottom: solid medium black">
+          <b>Final price</b></td>
+        <td align="right"
+            style="border-right: solid medium black; border-top: solid medium black; border-bottom: solid medium black">
+          {{roundMoney(receipt.totalPrice)}} {{globals.currency}}
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+
+<ng-template #none>
+  <td align="center">-</td>
+</ng-template>

@@ -1,0 +1,42 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$turquoise: (
+  50 : #e7f1f7,
+  100 : #c2ddea,
+  200 : #9ac6dc,
+  300 : #71afce,
+  400 : #529ec4,
+  500 : #348db9,
+  600 : #2f85b2,
+  700 : #277aaa,
+  800 : #2170a2,
+  900 : #155d93,
+  A100 : #c7e5ff,
+  A200 : #94ceff,
+  A400 : #61b6ff,
+  A700 : #47abff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$materialPrimary: mat-palette($turquoise);
+$warn: mat-palette($mat-red);
+
+$materialTheme: mat-light-theme($materialPrimary,$warn);
+@include angular-material-theme($materialTheme);
+

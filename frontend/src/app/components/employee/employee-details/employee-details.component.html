@@ -1,0 +1,31 @@
+<div *ngIf="editEmployee" id="addNewEmployee" >
+  <div >
+    <label>Name:</label>
+    <input style = "width:300px;" class="form-control" type="text" [(ngModel)]="editEmployee.name" placeholder="name"/>
+  </div>
+  <div>
+    <label>Gehalt:</label>
+    <input style = "width:300px;" class="form-control" type="number" [(ngModel)]="editEmployee.salaryPerHour" placeholder="10.0"/>
+  </div>
+  <div>
+    <label>Mitarbeiter Nummer:</label>
+    <input style = "width:300px;" class="form-control" [(ngModel)]="editEmployee.staffNumber" placeholder="Abc123"/>
+  </div>
+  <div>
+    <label style="width: 100px">Ist Admin: </label>
+    <input [checked]="editEmployee.isAdmin" [(ngModel)]="editEmployee.isAdmin" type="checkbox"/>
+  </div>
+  <div>
+    <label style="width: 100px">Ist Manager: </label>
+    <input [checked]="editEmployee.isManager" [(ngModel)]="editEmployee.isManager" type="checkbox"/>
+  </div>
+  <div>Skills:
+    <select style="width: 300px" class="form-control" multiple name="skills" [(ngModel)]="editEmployee.skills">
+      <option [ngValue]="null" disabled> Choose skills</option>
+      <option *ngFor="let skill of allSkills" [value]="skill">
+        {{skill.name}}
+      </option>
+    </select>
+  </div>
+  <button style="margin-top: 20px" class="btn" (click)="saveEmployee()">Save</button>
+</div>

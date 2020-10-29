@@ -1,0 +1,645 @@
+<div class="back-bar">
+  <h1>New Order</h1>
+  <button class="btn" routerLink="/order"><i class="fas fa-caret-left mr-2"></i><span>Back To Overview</span></button>
+</div>
+
+<mat-horizontal-stepper linear>
+
+  <mat-step label="Customer" [stepControl]="clientForm">
+    <div class="right-btns">
+      <button class="btn" (click)="findClient()">Find client</button>
+      <button class="btn" (click)="clearClientForm()">Reset</button>
+    </div>
+
+    <form [formGroup]="clientForm">
+      <div>
+        <h4>Contact</h4>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              formControlName="name"
+              [ngClass]="{'is-invalid': clientForm.get('name')?.invalid && (checkClient || clientForm.get('name')?.touched)}"
+              (input)="wasTouched()"
+            >
+            <div *ngIf="clientForm.get('name')?.errors?.required && (checkClient || clientForm.get('name')?.touched)"
+                 class="invalid-feedback">
+              Name is required!
+            </div>
+            <div *ngIf="clientForm.get('name')?.errors?.pattern && (checkClient || clientForm.get('name')?.touched)"
+                 class="invalid-feedback">
+              Only alphabetic values are allowed!
+            </div>
+
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Surname"
+              formControlName="surname"
+              [ngClass]="{'is-invalid': clientForm.get('surname')?.invalid && (checkClient || clientForm.get('surname')?.touched)}"
+              (input)="wasTouched()"
+            >
+            <div
+              *ngIf="clientForm.get('surname')?.errors?.required && (checkClient || clientForm.get('surname')?.touched)"
+              class="invalid-feedback">
+              Surname is required!
+            </div>
+            <div
+              *ngIf="clientForm.get('surname')?.errors?.pattern && (checkClient || clientForm.get('surname')?.touched)"
+              class="invalid-feedback">
+              Only alphabetic values are allowed!
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Phone"
+              formControlName="phone"
+              [ngClass]="{'is-invalid': clientForm.get('phone')?.invalid && (checkClient || clientForm.get('phone')?.touched)}"
+              (input)="wasTouched()"
+            >
+            <div *ngIf="clientForm.get('phone')?.errors?.pattern && (checkClient || clientForm.get('phone')?.touched)"
+                 class="invalid-feedback">
+              Invalid phone number!
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="E-Mail"
+              formControlName="eMail"
+              [ngClass]="{'is-invalid': clientForm.get('eMail')?.invalid && (checkClient || clientForm.get('eMail')?.touched)}"
+              (input)="wasTouched()"
+            >
+            <div *ngIf="clientForm.get('eMail')?.errors?.email && (checkClient || clientForm.get('eMail')?.touched)"
+                 class="invalid-feedback">
+              Invalid e-mail!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <h4>Address</h4>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control mr-3"
+              placeholder="Street"
+              formControlName="street"
+              [ngClass]="{'is-invalid': clientForm.get('street')?.invalid && (checkClient || clientForm.get('street')?.dirty)}"
+              (input)="wasTouched()"
+            >
+            <div
+              *ngIf="clientForm.get('street')?.errors?.required && (checkClient || clientForm.get('street')?.touched)"
+              class="invalid-feedback">
+              Street is required!
+            </div>
+            <div *ngIf="clientForm.get('street')?.errors?.pattern && (checkClient || clientForm.get('street')?.touched)"
+                 class="invalid-feedback">
+              Only alphabetic values are allowed!
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control mr-3"
+              placeholder="Country"
+              formControlName="country"
+              [ngClass]="{'is-invalid': clientForm.get('country')?.invalid && (checkClient || clientForm.get('country')?.touched)}"
+              (input)="wasTouched()"
+            >
+            <div
+              *ngIf="clientForm.get('country')?.errors?.required && (checkClient || clientForm.get('country')?.touched)"
+              class="invalid-feedback">
+              Country is required!
+            </div>
+            <div
+              *ngIf="clientForm.get('country')?.errors?.pattern && (checkClient || clientForm.get('country')?.touched)"
+              class="invalid-feedback">
+              Only alphabetic values are allowed!
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <input
+              type="number"
+              class="form-control mr-3"
+              placeholder="Nr."
+              formControlName="nr"
+              [ngClass]="{'is-invalid': clientForm.get('nr')?.invalid && (checkClient || clientForm.get('nr')?.touched)}"
+              (input)="wasTouched()"
+            >
+            <div *ngIf="clientForm.get('nr')?.errors?.required && (checkClient || clientForm.get('nr')?.touched)"
+                 class="invalid-feedback">
+              Nr. is required!
+            </div>
+            <div *ngIf="clientForm.get('nr')?.errors?.pattern && (checkClient || clientForm.get('nr')?.touched)"
+                 class="invalid-feedback">
+              Must be a number!
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control mr-3"
+              placeholder="City"
+              formControlName="city"
+              [ngClass]="{'is-invalid': clientForm.get('city')?.invalid && (checkClient || clientForm.get('city')?.touched)}"
+              (input)="wasTouched()"
+            >
+            <div *ngIf="clientForm.get('city')?.errors?.required && (checkClient || clientForm.get('city')?.touched)"
+                 class="invalid-feedback">
+              City is required!
+            </div>
+            <div *ngIf="clientForm.get('city')?.errors?.pattern && (checkClient || clientForm.get('city')?.touched)"
+                 class="invalid-feedback">
+              Only alphabetic values are allowed!
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Door"
+              formControlName="door">
+          </div>
+          <div class="form-group">
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Zip"
+              formControlName="zip"
+              [ngClass]="{'is-invalid': clientForm.get('zip')?.invalid && (checkClient || clientForm.get('zip')?.touched)}"
+              (input)="wasTouched()"
+            >
+            <div *ngIf="clientForm.get('zip')?.errors?.required && (checkClient || clientForm.get('zip')?.touched)"
+                 class="invalid-feedback">
+              Zip is required!
+            </div>
+            <div *ngIf="clientForm.get('zip')?.errors?.pattern && (checkClient || clientForm.get('zip')?.touched)"
+                 class="invalid-feedback">
+              Must be number!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <h4>Additional</h4>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="" rows="3" formControllName="info"></textarea>
+      </div>
+    </form>
+
+    <button matStepperNext class="btn float-right" (click)="checkClientForm()">Next</button>
+  </mat-step>
+
+  <mat-step label="Order" [stepControl]="orderForm">
+    <form [formGroup]="orderForm" style="min-height: 30em;">
+      <!--value : {{orderForm.value | json}}-->
+      <div>
+        <h4>Order</h4>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label>Status</label>
+            <select
+              class="browser-default custom-select"
+              formControlName="completionState"
+              required
+              id="completionStateSelect">
+              <option *ngFor="let state of completionStates" id="{{state.id}}">{{state.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label for="paid">Paid</label>
+            <select
+              class="browser-default custom-select"
+              id="paid"
+              formControlName="paid"
+              required
+            >
+              <option>yes</option>
+              <option>no</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label for="prepayment">Prepayment</label>
+            <div class="input-group">
+              <input type="number" class="form-control" placeholder="prepayment" formControlName="prepayment"
+                     id="prepayment"
+                     [ngClass]="{'is-invalid': orderForm.get('prepayment')?.invalid && (checkOrder || orderForm.get('prepayment')?.touched)}">
+              <div class="input-group-append">
+                <span class="input-group-text">HUF</span>
+              </div>
+              <div
+                *ngIf="orderForm.get('prepayment')?.errors?.required && (checkOrder || orderForm.get('prepayment')?.touched)"
+                class="invalid-feedback">
+                Prepayment is Required!
+              </div>
+              <div
+                *ngIf="orderForm.get('prepayment')?.errors?.pattern && (checkOrder || orderForm.get('prepayment')?.touched)"
+                class="invalid-feedback">
+                Must be a positive number between 0 and 999999999!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label for="plannedCompletionDate">Due Date</label>
+            <div class="input-group" (click)="d.open()">
+              <input
+                placeholder="yyyy-mm-dd"
+                type="text"
+                id="plannedCompletionDate"
+                class="form-control"
+                ngbDatepicker #d="ngbDatepicker"
+                formControlName="plannedCompletionDate"
+                placement="bottom"
+                [(ngModel)]="model"
+                [ngClass]="{'is-invalid': orderForm.get('plannedCompletionDate')?.invalid && (checkOrder || orderForm.get('plannedCompletionDate')?.touched)}"
+                (ngModelChange)="checkDate()"
+                [minDate]="minDate"
+                readonly="true"/>
+              <div class="input-group-append" style="curse: pointer;">
+                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+              </div>
+              <div
+                *ngIf="orderForm.get('plannedCompletionDate')?.errors?.required && (checkOrder || orderForm.get('plannedCompletionDate')?.touched)"
+                class="invalid-feedback">
+                Due Date is Required!
+              </div>
+              <div
+                *ngIf="orderForm.get('plannedCompletionDate')?.errors?.pattern && (checkOrder || orderForm.get('plannedCompletionDate')?.touched)"
+                class="invalid-feedback">
+                Date needs to have following pattern: yyyy-mm-dd!
+              </div>
+              <div
+                *ngIf="orderForm.get('plannedCompletionDate')?.errors?.pastDate && (checkOrder || orderForm.get('plannedCompletionDate')?.touched)"
+                class="invalid-feedback">
+                Date can not be in the past!
+              </div>
+            </div>
+            <div class="col">
+              <div class="text-center">
+                <button class="btn m-5 p-2" id="dueDateCalculateBtn" (click)="calculateDueDate()">
+                  <span class="mr-3">Calculate due-date</span>
+                  <i class="fas fa-save"></i>
+                </button>
+                <img id="dueDateCalculateLoading" src="assets/img/loading.gif" style="display: none; height:30px"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div formArrayName="productConfigurations">
+        <div *ngFor="let productConfig of getProductConfigurations.controls; let i=index" [formGroupName]="i"
+             class="product-wrapper">
+          <!--{{productConfig.value | json}}-->
+          <div class="new-product-wrapper">
+            <div class="product-dropdown">
+              <select required class="browser-default custom-select"
+                      (change)="setProductIDForConfig($event, i); addConcreteTaskForIndex(i, getProduct(productConfig).tasks.length);"
+                      formControlName="type"
+                      [ngClass]="{'is-invalid': productConfig.get('type')?.invalid && (checkOrder || productConfig.get('type')?.touched)}">
+                <option value="" disabled>Product</option>
+                <option *ngFor="let product of productList">{{product.name}}</option>
+              </select>
+              <div
+                *ngIf="productConfig.get('type')?.errors?.required && (checkOrder || productConfig.get('type')?.touched)"
+                class="invalid-feedback">
+                Product is required!
+              </div>
+            </div>
+            <div class="product-amount">
+              <div class="input-group">
+                <input type="number" class="form-control" placeholder="amount" formControlName="amount" id="amount"
+                       [ngClass]="{'is-invalid': productConfig.get('amount')?.invalid && (checkOrder || productConfig.get('amount')?.touched)}">
+                <div class="input-group-append">
+                  <span class="input-group-text">pieces</span>
+                </div>
+                <div
+                  *ngIf="productConfig.get('amount')?.errors?.required && (checkOrder || productConfig.get('amount')?.touched)"
+                  class="invalid-feedback">
+                  Amount is required!
+                </div>
+                <div
+                  *ngIf="(productConfig.get('amount')?.errors?.pattern || productConfig.get('amount')?.errors?.min || productConfig.get('amount')?.errors?.max) && (checkOrder || productConfig.get('amount')?.touched)"
+                  class="invalid-feedback">
+                  Must be a numeric number between 1 and 30!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            *ngIf="getProduct(productConfig).hasHeight || getProduct(productConfig).hasLength || getProduct(productConfig).hasWidth || getProduct(productConfig).hasColor"
+            class="mt-5">
+            <h4>Specification</h4>
+          </div>
+          <div class="row">
+
+            <div class="col" *ngIf="getProduct(productConfig).hasHeight == true">
+              <div class="form-group">
+                <label for="height">Height</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" placeholder="height" formControlName="height" id="height"
+                         [ngClass]="{'is-invalid': productConfig.get('height')?.invalid && (checkOrder || productConfig.get('height')?.touched)}">
+                  <div class="input-group-append">
+                    <span class="input-group-text">m</span>
+                  </div>
+                  <div
+                    *ngIf="productConfig.get('height')?.errors?.required && (checkOrder || productConfig.get('height')?.touched)"
+                    class="invalid-feedback">
+                    Height is required!
+                  </div>
+                  <div
+                    *ngIf="productConfig.get('height')?.errors?.pattern && (checkOrder || productConfig.get('height')?.touched)"
+                    class="invalid-feedback">
+                    Must be a numeric number between 0 and 99!
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col" *ngIf="getProduct(productConfig).hasWidth == true">
+              <div class="form-group">
+                <label for="Width">width</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" placeholder="width" formControlName="width" id="width"
+                         [ngClass]="{'is-invalid': productConfig.get('width')?.invalid && (checkOrder || productConfig.get('width')?.touched)}">
+                  <div class="input-group-append">
+                    <span class="input-group-text">m</span>
+                  </div>
+                  <div
+                    *ngIf="productConfig.get('width')?.errors?.required && (checkOrder || productConfig.get('width')?.touched)"
+                    class="invalid-feedback">
+                    Width is required!
+                  </div>
+                  <div
+                    *ngIf="productConfig.get('width')?.errors?.pattern && (checkOrder || productConfig.get('width')?.touched)"
+                    class="invalid-feedback">
+                    Must be a numeric number between 0 and 99!
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col" *ngIf="getProduct(productConfig).hasLength == true">
+              <div class="form-group">
+                <label for="length">Length</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" placeholder="length" formControlName="length" id="length"
+                         [ngClass]="{'is-invalid': productConfig.get('length')?.invalid && (checkOrder || productConfig.get('length')?.touched)}">
+                  <div class="input-group-append">
+                    <span class="input-group-text">m</span>
+                  </div>
+                  <div
+                    *ngIf="productConfig.get('length')?.errors?.required && (checkOrder || productConfig.get('length')?.touched)"
+                    class="invalid-feedback">
+                    Length is required!
+                  </div>
+                  <div
+                    *ngIf="productConfig.get('length')?.errors?.pattern && (checkOrder || productConfig.get('length')?.touched)"
+                    class="invalid-feedback">
+                    Must be a numeric number between 0 and 99!
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col" *ngIf="getProduct(productConfig).hasColor == true">
+              <div class="form-group">
+                <label for="color">Color</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="color" formControlName="color" id="color"
+                         [ngClass]="{'is-invalid': productConfig.get('color')?.invalid && (checkOrder || productConfig.get('color')?.touched)}">
+                  <div
+                    *ngIf="productConfig.get('color')?.errors?.required && (checkOrder || productConfig.get('color')?.touched)"
+                    class="invalid-feedback">
+                    Color is required!
+                  </div>
+                  <div
+                    *ngIf="productConfig.get('color')?.errors?.pattern && (checkOrder || productConfig.get('color')?.touched)"
+                    class="invalid-feedback">
+                    Must be a numeric number between 0 and 9999!
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div *ngIf="getProduct(productConfig).id != null && (getProduct(productConfig).tasks != [] || null)"
+               class="mt-5">
+            <h4>Time Costs</h4>
+          </div>
+
+          <div formArrayName="concreteTasks">
+            <div class="row">
+              <div *ngFor="let task of getProduct(productConfig).tasks let k=index" [formGroupName]="k" class="col">
+                <div class="form-group">
+                  <label for="task-time">{{task.name}}</label>
+                  <div class="input-group">
+                    <select
+                      class="form-control"
+                      id="task-time"
+                      formControlName="plannedDuration"
+                      [ngClass]="{'is-invalid': getConcreteTasksForIndex(i).at(k)?.invalid  && (checkOrder || getConcreteTasksForIndex(i).at(k)?.touched)}"
+                    >
+                      <option>0.25</option>
+                      <option>0.50</option>
+                      <option>0.75</option>
+                      <option>1.00</option>
+                      <option>1.25</option>
+                      <option>1.50</option>
+                      <option>1.75</option>
+                      <option>2.00</option>
+                      <option>2.25</option>
+                      <option>2.50</option>
+                      <option>2.75</option>
+                      <option>3.00</option>
+                      <option>3.25</option>
+                      <option>3.50</option>
+                      <option>3.75</option>
+                      <option>4.00</option>
+                      <option>4.25</option>
+                      <option>4.50</option>
+                      <option>4.75</option>
+                      <option>5.00</option>
+                      <option>5.25</option>
+                      <option>5.50</option>
+                      <option>5.75</option>
+                      <option>6.00</option>
+                      <option>6.25</option>
+                      <option>6.50</option>
+                      <option>6.75</option>
+                      <option>7.00</option>
+                      <option>7.25</option>
+                      <option>7.50</option>
+                      <option>7.75</option>
+                      <option>8.00</option>
+                      <option>8.25</option>
+                      <option>8.50</option>
+                      <option>8.75</option>
+                      <option>9.00</option>
+                    </select>
+                    <!--
+
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="task-time"
+                      formControlName="plannedDuration"
+                      min="0.25" step="0.25" max="9"
+                      (ngModelChange)="setPlannedDuration(i,k)"
+                      [ngClass]="{'is-invalid': getConcreteTasksForIndex(i).at(k)?.invalid  && (checkOrder || getConcreteTasksForIndex(i).at(k)?.touched)}"
+                    >-->
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon1">h</span>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="getConcreteTasksForIndex(i).at(k)?.errors?.required  && (checkOrder || getConcreteTasksForIndex(i).at(k)?.touched)"
+                    class="invalid-feedback">
+                    This field is required!
+                  </div>
+                  <div
+                    *ngIf="getConcreteTasksForIndex(i).at(k)?.errors?.min  && (checkOrder || getConcreteTasksForIndex(i).at(k)?.touched)"
+                    class="invalid-feedback">
+                    Can not be higher than 9!
+                  </div>
+                  <div
+                    *ngIf="getConcreteTasksForIndex(i).at(k)?.errors?.pattern  && (checkOrder || getConcreteTasksForIndex(i).at(k)?.touched)"
+                    class="invalid-feedback">
+                    Must be a number between 0-9!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <h4>Additional</h4>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <textarea class="form-control" id="" rows="3" placeholder="Info" formControlName="info"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <button class="btn float-right" (click)="showProductDialog(i)"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+          <div class="text-center">
+            <button class="btn mt-3" (click)="addProductConfiguration()">
+              <span class="mr-3">Add Product</span>
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+    <button matStepperPrevious class="btn float-left">Back</button>
+    <button matStepperNext class="btn float-right" (click)="checkOrderForm()">Next</button>
+  </mat-step>
+
+  <mat-step label="Done">
+    <h4>Summary</h4>
+    <div *ngIf="!selectedClient">
+      <h5>New client</h5>
+      <p>Name: {{clientFromForm().name}}</p>
+      <p>Address: {{clientFromForm().address}}</p>
+      <p>E-Mail: {{clientFromForm().emails}}</p>
+      <p>Phone Number: {{clientFromForm().phoneNumbers}}</p>
+      <p>Infos: {{clientFromForm().infos}}</p>
+    </div>
+    <div *ngIf="selectedClient">
+      <h5>Client</h5>
+      <p>Name: {{selectedClient.name}}</p>
+      <p>Address: {{selectedClient.address}}</p>
+      <p>E-Mail: {{selectedClient.emails}}</p>
+      <p>Phone Number: {{selectedClient.phoneNumbers}}</p>
+      <p>Infos: {{selectedClient.infos}}</p>
+    </div>
+    <h5>Cost table</h5>
+    <app-order-cost-table [receipt]="asReceipt"></app-order-cost-table>
+    <div class="row">
+      <div class="col">
+        <div class="text-center">
+          <button class="btn m-5 p-2" (click)="addOrder()">
+            <span class="mr-3">Save Order</span>
+            <i class="fas fa-save"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button matStepperPrevious class="btn float-left">Back</button>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<div id="product_delete_dialog" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Product deletion</h5>
+        <button type="button" class="close" (click)="closeDialog()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you really want to delete this Product?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red" (click)="deleteProductConfiguration(this.toDelete)">Yes</button>
+        <button type="button" class="btn green" (click)="closeDialog()">No</button>
+      </div>
+    </div>
+  </div>
+</div>

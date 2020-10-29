@@ -1,0 +1,33 @@
+
+
+<div *ngIf="data">
+  <!--<div>
+    <div class="title">Name:</div>
+    <div class="text">{{data.taskName}}</div>
+  </div>
+  <div>
+    <div class="title">Beschreibung:</div>
+    <div class="text">{{data.taskDescription}}</div>
+  </div>
+  -->
+    <div class="title">Dauer:</div>
+    <div class="text"><input type="text" [(ngModel)]="taskDuration"> Minuten</div>
+    <div (click)="updateTime()" class="text btn btn-success">update Time</div>
+  <div>
+    <div class="title">Product:</div>
+    <a href="/product/{{data.productId}}" class="text">{{data.productName}}</a>
+  </div>
+  <div>
+    <div class="title">Datum</div>
+    <input [(ngModel)]="moveDate"  type="text">
+  </div>
+  <div>
+    <div class="title">Mitarbeiter</div>
+    <input [(ngModel)]="moveEmployee" type="text">
+  </div>
+
+  <div>
+    <div class="title">Verschieben:</div>
+    <div (click)="updateTask()" class="text btn btn-success">Task verschieben</div>
+  </div>
+</div>

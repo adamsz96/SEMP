@@ -1,0 +1,39 @@
+@import "../../../../colors";
+
+.button{
+  background:none!important;
+  border:none;
+  padding:0!important;
+  font: inherit;
+  color: #4f7bff;
+  cursor: pointer;
+}
+.order_detail{
+  padding-top: 20px;
+  padding-left: 50px;
+  text-align: left;
+}
+p {
+  border: 1px solid lightskyblue;
+  padding: 30px;
+}
+table{
+  border-bottom: black solid;
+}
+.btn{
+  margin-left: 15px;
+}
+
+.late{
+  background-color: darkred;
+  color: white;
+}
+
+.warning{
+  float: right;
+}
+
+h5{
+  margin-bottom: 20px;
+}
+

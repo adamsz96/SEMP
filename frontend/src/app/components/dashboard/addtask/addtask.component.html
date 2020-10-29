@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title">Assign task to employee</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div *ngIf="checkValue(employee) && checkValue(currentActiveTask)">
+    <div>
+      <span class="addtask-span">{{currentActiveTask.taskName}} </span>
+      <span class="addtask-span">{{currentActiveTask.productName}}</span>
+      <span class="addtask-span">duration:&nbsp;{{currentActiveTask.plannedDuration/4}}h</span>
+    </div>
+    <div class="container addtask-container">
+      <div class="col-md-12 list">
+          <form>
+            <div class="list-item"*ngFor="let slot of openTimeSlotList; let i=index;">
+              <div class="form-check">
+                <label>
+                  <input type="radio" name="radio" [checked]="i === activeIndex" (click)="taskSelected(i)"> 
+                    <span class="label-text addtask-span">{{slot.startTime | date:"HH:mm"}}-{{slot.endTime | date:"HH:mm"}}</span>
+                    <!--<span class="label-text">{{slot.duration/4}}h</span>-->
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="onSaveClick()">Save</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Cancel</button>
+</div>

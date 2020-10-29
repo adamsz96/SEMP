@@ -1,0 +1,158 @@
+@import "../../../colors";
+
+.signin-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 450px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-color: #ffffff;
+}
+
+input:focus{
+  outline: none;
+}
+
+#login-logo{
+  width: 130px;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 5%;
+}
+
+#username{
+  width: 60%;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  border-top: 0px;
+  border-left:0px;
+  border-right: 0px;
+  border-bottom: solid 1px#999999;
+  transition: color .3s;
+  cursor: text;
+}
+
+#username-label{
+  width: 60%;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  color: #999999;
+  transition: transform .3s, font-size .3s, color .3s;
+  cursor: text;
+}
+
+.user-error{
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translateX(-50%);
+  font-size: 0.8em;
+}
+
+#password{
+  width: 60%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+  border-top: 0px;
+  border-left:0px;
+  border-right: 0px;
+  border-bottom: solid 1px #999999;
+  transition: color .3s;
+  cursor: text;
+}
+
+#password-label{
+  width: 60%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+  color: #999999;
+  transition: transform .3s, font-size .3s, color .3s;
+  cursor: text;
+}
+
+.password-error{
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translateX(-50%);
+  font-size: 0.8em;
+}
+
+.form-text{
+  text-align: center;
+}
+
+.aktive-input{
+  border-bottom: solid $primary_color 2px !important;
+}
+
+.aktive-label{
+  font-size: 12px !important;
+  color: $primary_color !important;
+  transform: translate(-50%, -100%) !important;
+}
+
+.submit-wrap{
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.more{
+  color: #999999;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+}
+
+.error-message-wrapper{
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  transform: translateX(-50%);
+  width: 30%;
+  background-color: #FFBABA;
+  
+  .error-message-header{
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    position: relative;
+  }
+  .error-message-button{
+    position: absolute;
+    right: 4px;
+    top: 5px;
+    line-height: 0.5;
+    cursor: pointer;
+  }
+  .error-message{
+    padding: 1em;
+    text-align: center;
+  }
+}
+
+.footer{
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  bottom: 3%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+}

@@ -1,0 +1,124 @@
+<h4>Tasks</h4>
+<button id="add_btn" *ngIf="editMode" class="btn" (click)="showNewTask()"><span class="mr-3">New Task</span><i class="fas fa-plus"></i></button>
+<table class="table">
+  <thead>
+      <tr>
+        <th>Name</th>
+        <th>Required skill</th>
+        <th>Approximate time</th>
+        <th>Predecessors</th>
+        <th *ngIf="editMode"></th>
+      </tr>
+    </thead>
+
+  <tbody *ngIf="!editMode">
+    <tr *ngFor="let task of tasks">
+      <td>{{task.name}}</td>
+      <td>{{task.skill}}</td>
+      <td>{{task.allocatedTime/4}}h</td>
+      <td>
+        <table>
+          <tr *ngFor="let parent of task.parentTasks">
+              <td>{{parent.name}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+
+  <tbody *ngIf="editMode">
+  <tr *ngFor="let task of tasks">
+      <td>
+        <input type="text" [(ngModel)]="task.name" (change)="updateTask(task)" required placeholder="name"/>
+      <td>
+        <select [(ngModel)]="task.skill" (change)="updateTask(task)">
+          <option *ngFor="let skill of skills" id="{{skill.id}}">{{skill.name}}</option>
+        </select>
+      </td>
+      <td><input (change)="setAllocatedTime(task, $event.target.value)" type="number" value="{{task.allocatedTime/4}}" min="0.25" step="0.25" max="9" required/>h</td>
+      <td>
+        <table class="predecessor_table">
+          <tr *ngFor="let predecessor of task.parentTasks">
+            <td>{{predecessor.name}}</td>
+            <td><fa name="times" (click)="showPredecessorDialog(task, predecessor)"></fa></td>
+          </tr>
+         <tr>
+            <select (change)="addPredecessorToTask(task, $event)">
+              <option></option>
+              <option *ngFor="let possibleTask of getPossibleTasks(task)" id="{{possibleTask.id}}">{{possibleTask.name}}</option>
+            </select>
+         </tr>
+        </table>
+      </td>
+    </tr>
+    <tr *ngIf="newTask">
+      <td>
+        <input type="text" [(ngModel)]="newTask.name" required placeholder="name"/>
+      </td>
+      <td>
+        <select [(ngModel)]="newTask.skill">
+          <option *ngFor="let skill of skills" id="{{skill.id}}">{{skill.name}}</option>
+        </select>
+      </td>
+      <td><input (change)="setAllocatedTime(newTask, $event.target.value)" type="number" value="{{newTask.allocatedTime/4}}" min="0.25" step="0.25" max="9" required/>h</td>
+      <td>
+        <table class="predecessor_table">
+          <tr *ngFor="let predecessor of newTask.parentTasks">
+            <td>{{predecessor.name}}</td>
+            <td><fa name="times" (click)="showPredecessorDialog(newTask, predecessor)"></fa></td>
+          </tr>
+          <tr>
+            <select (change)="addPredecessorToTask(newTask, $event)">
+              <option></option>
+              <option *ngFor="let possibleTask of getPossibleTasks(newTask)" id="{{possibleTask.id}}">{{possibleTask.name}}</option>
+            </select>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <fa name="times" (click)="showTaskDialog();"></fa>
+        <fa name="check" (click)="addNewTask()"></fa>
+      </td>
+    </tr>
+  </tbody>
+
+  <div id="predecessor_delete_dialog" class="modal" tabindex="-1" >
+    <div class="modal-dialog" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Task deletion</h5>
+          <button type="button" class="close" (click)="closePredecessorDialog()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you really want to delete this predecessor?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn red" (click)="deletePredecessorDialog()">Yes</button>
+          <button type="button" class="btn green" (click)="closePredecessorDialog()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="task_delete_dialog" class="modal" tabindex="-1" >
+    <div class="modal-dialog" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Task deletion</h5>
+          <button type="button" class="close" (click)="closeTaskDialog()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you really want to delete this task?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn red" (click)="deleteTaskDialog()">Yes</button>
+          <button type="button" class="btn green" (click)="closeTaskDialog()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</table>

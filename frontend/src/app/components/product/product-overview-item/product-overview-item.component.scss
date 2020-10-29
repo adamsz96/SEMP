@@ -1,0 +1,38 @@
+$col : #0000cc;
+
+.overview_item {
+  display: inline-flex;
+
+  width: 150px;
+  height: 155px;
+
+  align-items: flex-end;
+  margin: 5px;
+  box-shadow: #555 1px 1px 2px;
+
+  background: rgba(0,0,0,0);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-blend-mode: darken;
+  opacity: 1;
+
+  cursor: pointer;
+}
+
+.overview_item p {
+  display: inline-block;
+  background: rgba(0,0,0,0.6);
+  width: 100%;
+  text-align: center;
+  min-height: 1.5em;
+  color: white;
+  overflow-wrap: break-word;
+}
+
+.overview_item:hover {
+  background: rgba(0,0,0,0.2);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}

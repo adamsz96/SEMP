@@ -1,0 +1,4 @@
+<div *ngIf="product.images" class="overview_item"
+  [ngStyle]="{'background-image':'url(' + getProductThumbnail() + ')'}">
+  <p>{{product.name}}</p>
+</div>

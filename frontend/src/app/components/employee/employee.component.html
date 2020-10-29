@@ -1,0 +1,57 @@
+<div class="page-header">
+  <h1>Employees</h1>
+  <div class="page-control">
+
+    <div class="w-25 input-group">
+      <input [(ngModel)]="searchWord" placeholder="Search" autocomplete="off" (keyup)="filter()" class="search-bar form-control" aria-label="Search">
+      <div class="input-group-append" (click)="clear()">
+        <span class="input-group-text " id="">
+          <i *ngIf="searchWord" class="fas fa-times"></i>
+          <i *ngIf="!searchWord" class="fas fa-search"></i>
+        </span>
+      </div>
+    </div>
+
+    <button class="btn" routerLink="/employee/new"><span class="mr-3">New Employee</span><i class="fas fa-plus"></i></button>
+  </div>
+</div>
+
+<div>
+  <!--<button class="btn" routerLink="/employee/new">Hinzufuegen</button>
+
+  <div>
+    <button class="btn" (click)="filterEmployees(filtertextField.value)">filter</button>
+    <input #filtertextField type="text">
+  </div>-->
+  <table class="table table-striped table-responsive-md btn-table">
+    <thead>
+    <!--td>ID</td-->
+    <td>Name</td>
+    <td>Personnel Number</td>
+    <td>Salary/h</td>
+    <td>Manager</td>
+    <td>Admin</td>
+    <td>Skills</td>
+    <td></td>
+    </thead>
+    <tr *ngFor="let employee of filteredEmployeeList"
+        [class.selected]="employee === selectedEmployee">
+      <!--td>{{employee.id}}</td-->
+      <td>{{employee.name}}</td>
+      <td>{{employee.staffNumber}}</td>
+      <td>{{employee.salaryPerHour}}</td>
+      <td><input type="checkbox" [disabled]="true" [checked]="employee.isManager"></td>
+      <td><input type="checkbox" [disabled]="true" [checked]="employee.isAdmin"></td>
+      <td>
+        <ul>
+          <li *ngFor="let skill of employee.skills">
+            {{skill.name}}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <button class="btn" routerLink="/employee/{{employee.id}}"><span class="mr-3">Edit</span><i class="fas fa-edit"></i></button>
+      </td>
+    </tr>
+  </table>
+</div>

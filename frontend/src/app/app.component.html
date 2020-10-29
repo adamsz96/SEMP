@@ -1,0 +1,15 @@
+
+<app-header></app-header>
+<div class="container-fluid main-container" style="height: 100%; padding: 0px;">
+  <div class="row" id = "row-menu">
+    <div class="col-fixed-240 sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div [ngClass]="authenticationService.isLoggedIn() ? 'col container' : 'col'">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,63 @@
+@import "../../../colors";
+
+.hours{
+  display: inline-block;
+  position:  relative;
+  border-top: 1px solid black;
+}
+
+.calendar{
+  position: relative;
+  margin-left: 50px;
+}
+
+.hours div{
+  position: absolute;
+  border-top: 1px solid $navbar_background;
+  width: 80px
+}
+
+.calendar-day:first-child{
+  border-left: 1px solid $navbar_background;
+}
+
+.calendar-day{
+  display:inline-block;
+  width: 18%;
+  position: relative;
+  border-right: 1px solid $navbar_background;
+}
+
+.calendar-block{
+  height: 20px;
+}
+
+.block-3{
+  border-bottom: 1px solid $navbar_background;
+}
+
+.block-1{
+  border-bottom: 1px dotted $navbar_background;
+}
+
+.day-header{
+  border: 0px;
+  text-align: center;
+  border-bottom: 1px solid $navbar_background;
+}
+
+.calendar-entry{
+  position: absolute;
+  left: 2.5%;
+  width: 95%;
+  background: rgba(52,141,185,.85);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-bottom: 1px solid black;
+  color: $light_font_color;
+  text-align: center;
+  overflow:hidden;
+}
+
+.calendar-entry span{
+  font-size: small;
+}

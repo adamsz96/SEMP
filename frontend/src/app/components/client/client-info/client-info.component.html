@@ -1,0 +1,37 @@
+<div class = "container">
+    <form class ="form" style = "background-color: #ffffff; padding:20px;">
+      <h1 *ngIf="!remove" class = "header-default">Client Details</h1>
+      <h1 *ngIf="remove" class = "header-default">Do You Really Want To Remove This Client</h1>
+      <hr flex/>
+      <div>
+      <a class = "text-default"> Name: {{client.name}}</a>
+    </div>
+    <div style = "padding-top: 10px;">
+      <a class = "text-default"> Address: {{client.address}}</a>
+    </div>
+    <div style = "padding-top: 10px;">
+      <a class = "text-default"> Infos: {{client.infos}}</a>
+    </div>
+    <div style = "padding-top: 10px;">
+      <a class = "text-default"> Emails: {{client.emails}}</a>
+    </div>
+    <div style = "padding-top: 10px;">
+      <a class = "text-default"> Phone Numbers: {{client.phoneNumbers}}</a>
+    </div>
+    <div style = "padding-top: 10px;">
+      <a class = "text-default"> Contact Persons: {{client.contactPersons}}</a>
+    </div>
+      
+      <div *ngIf="!remove" style = "padding-top: 30px;">
+        <button class = "btn btn-primary btn-text-default" (click) = "onOkClick()">Ok</button>
+      </div>
+
+      <div *ngIf="remove" style = "padding-top: 30px;">
+          <button class = "btn btn-primary btn-text-default" (click) = "onOkClick()">Cancel</button>
+
+          <button class = "btn btn-danger btn-text-default" style = "margin-left: 20px;" (click) = "onRemoveClick()">Remove</button>
+        </div>
+
+    </form>
+    </div>
+    

@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>Products</h1>
+
+  <div class="page-control">
+  <div class="w-25 input-group">
+    <input [(ngModel)]="searchWord" placeholder="Search" autocomplete="off" (keyup)="filter()" class="search-bar form-control" aria-label="Search">
+    <div class="input-group-append" (click)="clear()">
+        <span class="input-group-text " id="">
+          <i *ngIf="searchWord" class="fas fa-times"></i>
+          <i *ngIf="!searchWord" class="fas fa-search"></i>
+        </span>
+    </div>
+  </div>
+
+  <button class="btn" routerLink="/product/new"><span class="mr-3">New Product</span><i class="fas fa-plus"></i></button>
+  </div>
+</div>
+
+<div *ngIf="products" class="overview">
+  <!--<span id="add_product" routerLink="/product/new"><i class="fas fa-plus icon fa-lg"></i></span>-->
+  <app-product-overview-item [product]="product" *ngFor="let product of filteredProducts" routerLink="/product/{{product.id}}"></app-product-overview-item>
+</div>

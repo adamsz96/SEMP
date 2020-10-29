@@ -1,0 +1,84 @@
+<table class="table" style="text-align: center">
+  <thead>
+  <tr>
+    <th style="text-align: right">Amount</th>
+    <th style="text-align: left">Product</th>
+    <th>Color</th>
+    <th>Length</th>
+    <th>Width</th>
+    <th>Height</th>
+    <th style="text-align: right">Price/Unit</th>
+    <th style="text-align: right">Total Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of this.receipt.items">
+    <td style="text-align: right">{{item.amount}}x</td>
+    <td style="text-align: left">{{item.product.name}}</td>
+    <td style="text-align: center" *ngIf="item.product.hasColor;else none">{{item.configuration.color}}</td>
+    <td style="text-align: center" *ngIf="item.product.hasWidth;else none">{{item.configuration.width}} m</td>
+    <td style="text-align: center" *ngIf="item.product.hasLength;else none">{{item.configuration.length}} m</td>
+    <td style="text-align: center" *ngIf="item.product.hasHeight;else none">{{item.configuration.height}} m</td>
+    <td style="text-align: right"> {{roundMoney(item.product.pricePerUnit)}} {{globals.currency}}</td>
+    <td style="text-align: right">{{roundMoney(totalItemPrice(item))}} {{globals.currency}}</td>
+  </tr>
+  <tr>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td style="text-align: right; border-top-style: double"><b>Gross price</b></td>
+    <td style="text-align: right; border-top-style: double">{{roundMoney(grossPrice())}} {{globals.currency}}</td>
+  </tr>
+  <tr>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td style="text-align: right"><b>Vat ({{globals.vatPercent * 100}}%)</b></td>
+    <td style="text-align: right">{{roundMoney(vatPrice())}} {{globals.currency}}</td>
+  </tr>
+  <tr>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td style="text-align: right"><b>Net price</b></td>
+    <td style="text-align: right">{{roundMoney(netPrice())}} {{globals.currency}}</td>
+  </tr>
+  <tr *ngIf="receipt.prepayment && receipt.prepayment>0">
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td style="text-align: right"><b>Prepaid</b></td>
+    <td style="text-align: right">{{-receipt.prepayment}} {{globals.currency}}</td>
+  </tr>
+  <tr>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td class="hidden-table-item"></td>
+    <td
+      style="text-align: right; border-left: solid medium black; border-top: solid medium black; border-bottom: solid medium black">
+      <b>Final price</b></td>
+    <td style="text-align: right; border-right: solid medium black; border-top: solid medium black; border-bottom: solid medium black">
+      {{roundMoney(totalPrice())}} {{globals.currency}}
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #none>
+  <td style="text-align: center">-</td>
+</ng-template>

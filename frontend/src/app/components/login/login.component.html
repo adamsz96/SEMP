@@ -1,0 +1,67 @@
+<div class="signin-wrapper">
+
+  <form action="#" method="post" enctype="multipart/form-data" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <img src="assets/img/logo-black.jpg" alt="" id="login-logo">
+
+
+    <input
+      required="required"
+      id="username"
+      name="username"
+      formControlName="username"
+      type="text"
+      [ngClass]= "usernameLabelDown ? 'null' : 'aktive-input'"
+      (focus)="toggleLabel()"
+    >
+    <label
+      for="username"
+      id="username-label"
+      [ngClass]="usernameLabelDown ? 'null' : 'aktive-label'"
+    >
+      User
+    </label>
+    <div *ngIf="submitted && username.errors" class="user-error">
+      <div class="form-text text-warning" *ngIf="username.errors.required">
+        Your username is required!
+      </div>
+    </div>
+
+
+    <input
+      required="required"
+      id="password"
+      name="password"
+      formControlName="password"
+      type="password"
+      [ngClass]="passwordLabelDown ? 'null' : 'aktive-input'"
+      (focus)="toggleLabel()"
+    >
+    <label
+      for="password"
+      id="password-label"
+      [ngClass]="passwordLabelDown ? 'null' : 'aktive-label'"
+    >
+      Password
+    </label>
+    <div *ngIf="submitted && password.errors" class="password-error">
+      <div class="form-text text-warning" *ngIf="password.errors.required">
+        Your password is required!
+      </div>
+      <div class="form-text text-warning" *ngIf="password.errors.minlength">
+        Your password must be at least 8 characters long!
+      </div>
+    </div>
+
+
+    <div class="submit-wrap">
+      <input type="submit" value="Sign in" class="border-button">
+      <!--<a href="#" class="more">Forgot your password?</a>-->
+    </div>
+  </form>
+
+</div>
+
+
+<div class="footer">&copy; a team21 product</div>
+
+

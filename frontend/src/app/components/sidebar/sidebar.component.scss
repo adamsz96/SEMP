@@ -1,0 +1,32 @@
+@import "../../../colors";
+
+#sidebar {
+  display: inline-block;
+  position: relative;
+  background: $sidebar_background;
+  height:calc(100vh - 50px);
+  width:240px;
+}
+
+.sidebar-item {
+  background: $sidebar_item_background;
+  width: 100%;
+  padding-left:45px;
+  min-height:60px;
+  text-align: left;
+  line-height:60px;
+  vertical-align: middle;
+  color:#555;
+  cursor: pointer;
+  &:focus{
+    outline: none;
+    border: 0;
+  }
+  &:hover{
+    background: $sidebar_item_background_hover;
+  }
+}
+
+.active{
+  color: $sidebar_color;
+}

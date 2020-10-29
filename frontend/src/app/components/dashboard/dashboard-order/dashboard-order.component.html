@@ -1,0 +1,12 @@
+<span class="calendar-employee">
+    <span>{{openOrder.orderName}}</span>
+  </span>
+
+  <div class="calendar-entry">
+    <div *ngFor="let openTask of openOrder.tasks; let i = index" >
+      <div [ngClass]="{ 'task-row-selectable': isSelectable(i), 'task-row': true, 'task-row-selected': openOrder.selectedTaskId===openOrder.tasks[i].taskId  }" >
+        <span class="task-name" (click)="selectTask(i)">{{(openTask.taskName | slice : 0 : 17) + (openTask.taskName.length > 17 ? '...' : '')}} ({{openTask.plannedDuration/4}}h)</span>
+      </div>
+    </div>
+    <div class="task-row-margin">&nbsp;</div>
+  </div>

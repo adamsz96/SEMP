@@ -1,0 +1,39 @@
+@import "../../../../colors";
+
+.overview {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+#add_product {
+  position: relative;
+  font-size: 100px;
+  color: white;
+  display: inline-flex;
+  width: 150px;
+  height: 155px;
+  margin: 5px;
+  box-shadow: #555 1px 1px 2px;
+
+  background-size: cover;
+  background: $button_background no-repeat center center;
+
+  cursor: pointer;
+}
+
+.icon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#add_product:hover {
+  background: $button_background_hover;
+}
+
+
